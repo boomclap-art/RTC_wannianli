@@ -37,6 +37,9 @@
 "..\..\output\bsp_timbase.o"
 "..\..\output\bsp_beep .o"
 "..\..\output\bsp_dht11.o"
+"..\..\output\fonts.o"
+"..\..\output\resource_port.o"
+"..\..\output\bsp_spi_flash.o"
 --library_type=microlib --strict --scatter "..\..\Output\Template.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

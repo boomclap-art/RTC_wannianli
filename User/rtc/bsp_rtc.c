@@ -485,7 +485,11 @@ void oled_page_display(uint8_t page)
 	if(page==0)
 	{
 		OLED_ShowStr(30, 0, str_day, 1);
-		OLED_ShowStr(35 , 3, str_time, 1);
+//		OLED_ShowStr(35 , 3, str_time, 1);
+		OLED_Show_Numphoto(0,2,systmtime.tm_min/10);
+		OLED_Show_Numphoto(26,2,systmtime.tm_min%10);
+		OLED_Show_Numphoto(52,2,systmtime.tm_sec/10);
+		OLED_Show_Numphoto(78,2,systmtime.tm_sec%10);
 		OLED_ShowStr(0, 7, "menu", 1);OLED_ShowStr(90, 7, "lunar", 1);
 	}
 	if(page==1)

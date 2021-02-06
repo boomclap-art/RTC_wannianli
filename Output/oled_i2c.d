@@ -31,3 +31,4 @@
 ..\..\output\oled_i2c.o: ..\..\Libraries\FWlib\inc\misc.h
 ..\..\output\oled_i2c.o: ..\..\User\font\codetab.h
 ..\..\output\oled_i2c.o: ..\..\User\./systick/bsp_SysTick.h
+..\..\output\oled_i2c.o: ..\..\User\./font/fonts.h

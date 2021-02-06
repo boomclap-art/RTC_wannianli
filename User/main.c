@@ -50,6 +50,7 @@ int main()
 	
 	  RTC_NVIC_Config();
 		OLED_CLS();
+//	ILI9341_DispChar_CH(0,0,"жа");
 	  RTC_CheckAndConfig(&systmtime);
 		BASIC_TIM_Init();
 		Beep_Config();

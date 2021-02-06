@@ -612,6 +612,21 @@
               <FileType>1</FileType>
               <FilePath>..\..\User\dht11\bsp_dht11.c</FilePath>
             </File>
+            <File>
+              <FileName>fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\font\fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>resource_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\font\resource_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_spi_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\flash\bsp_spi_flash.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
