@@ -16,6 +16,7 @@ char const *en_zodiac_sign[] = {"Pig", "Rat", "Ox", "Tiger", "Rabbit", "Dragon",
 extern uint8_t str_day[15];
 extern uint8_t alarm_flag,stopwatch_flag;
 extern uint8_t str_time[15];
+extern uint8_t str_canderday[50];
 extern uint8_t str_time_set[15];
 extern uint8_t str_day_set[15];
 extern uint8_t str_alarm_time[15];
@@ -462,20 +463,20 @@ void Time_Display(uint32_t TimeVar,struct rtc_time *tm)
 	  {
 	      
 	      GetChinaCalendar((u16)tm->tm_year, (u8)tm->tm_mon, (u8)tm->tm_mday, str);	
-					printf("\r\n 今天新历：%0.2d%0.2d,%0.2d,%0.2d", str[0], str[1], str[2], str[3]);
-	      GetChinaCalendarStr((u16)tm->tm_year,(u8)tm->tm_mon,(u8)tm->tm_mday,str);
-					printf("\r\n 今天农历：%s\r\n", str);
+//					printf("\r\n 今天新历：%0.2d%0.2d,%0.2d,%0.2d", str[0], str[1], str[2], str[3]);
+//	      GetChinaCalendarStr((u16)tm->tm_year,(u8)tm->tm_mon,(u8)tm->tm_mday,str);
+//					printf("\r\n 今天农历：%s\r\n", str);
 	
-	     if(GetJieQiStr((u16)tm->tm_year, (u8)tm->tm_mon, (u8)tm->tm_mday, str))
-					printf("\r\n 今天农历：%s\r\n", str);
+//	     if(GetJieQiStr((u16)tm->tm_year, (u8)tm->tm_mon, (u8)tm->tm_mday, str))
+//					printf("\r\n 今天农历：%s\r\n", str);
 	      FirstDisplay = 0;
 	  }	 	  	
 
 	  /* 输出时间戳，公历时间 */
-	  printf(" UNIX时间戳 = %d 当前时间为: %d年(%s年) %d月 %d日 (星期%s)  %0.2d:%0.2d:%0.2d\r",TimeVar,
-	                    tm->tm_year, zodiac_sign[(tm->tm_year-3)%12], tm->tm_mon, tm->tm_mday, 
-	                    WEEK_STR[tm->tm_wday], tm->tm_hour, 
-	                    tm->tm_min, tm->tm_sec);
+//	  printf(" UNIX时间戳 = %d 当前时间为: %d年(%s年) %d月 %d日 (星期%s)  %0.2d:%0.2d:%0.2d\r",TimeVar,
+//	                    tm->tm_year, zodiac_sign[(tm->tm_year-3)%12], tm->tm_mon, tm->tm_mday, 
+//	                    WEEK_STR[tm->tm_wday], tm->tm_hour, 
+//	                    tm->tm_min, tm->tm_sec);
 		sprintf((char*)str_day,"%0.4d-%0.2d-%0.2d", tm->tm_year, tm->tm_mon, tm->tm_mday);
 		str_day[12]=0;
 		sprintf((char*)str_time,"%0.2d:%0.2d:%0.2d",tm->tm_hour, tm->tm_min, tm->tm_sec);
@@ -485,71 +486,78 @@ void oled_page_display(uint8_t page)
 	if(page==0)
 	{
 		OLED_ShowStr(30, 0, str_day, 1);
-//		OLED_ShowStr(35 , 3, str_time, 1);
 		OLED_Show_Numphoto(0,2,systmtime.tm_min/10);
 		OLED_Show_Numphoto(26,2,systmtime.tm_min%10);
 		OLED_Show_Numphoto(52,2,systmtime.tm_sec/10);
 		OLED_Show_Numphoto(78,2,systmtime.tm_sec%10);
-		OLED_ShowStr(0, 7, "menu", 1);OLED_ShowStr(90, 7, "lunar", 1);
+		OLED_DisString_CH(0, 6, "菜单");OLED_DisString_CH(90, 6, "农历");
 	}
 	if(page==1)
 	{
-		sprintf((char*)str_tempandhumidity,"H:%0.2d.%0.2d  T:%0.2d.%0.2d",dht11_data.humi_int,dht11_data.humi_deci,dht11_data.temp_int,dht11_data.temp_deci);
-		OLED_ShowStr(0, 0, str_tempandhumidity, 1);
-		OLED_ShowStr(0, 7, "menu", 1);OLED_ShowStr(70, 7, "gregorian", 1);
+		GetChinaCalendarStr((u16)systmtime.tm_year,(u8)systmtime.tm_mon,(u8)systmtime.tm_mday,str_canderday);
+		OLED_DisString_CH(0,2,str_canderday);
+		OLED_DisString_CH(0,0,"湿");
+		sprintf((char*)str_tempandhumidity,":%0.2d.%0.2d",dht11_data.humi_int,dht11_data.humi_deci);
+		OLED_ShowStr(16, 0, str_tempandhumidity, 1);
+		
+		OLED_DisString_CH(60,0,"温");
+		sprintf((char*)str_tempandhumidity,":%0.2d.%0.2d",dht11_data.temp_int,dht11_data.temp_deci);
+		OLED_ShowStr(76, 0, str_tempandhumidity, 1);
+		
+		OLED_DisString_CH(0, 6, "菜单");OLED_DisString_CH(90, 6, "公历");
 	}
 	if(page==2)
 	{
-		OLED_ShowStr(0, 0, "calibration", 1);
-		OLED_ShowStr(0 , 2,"alarm", 1);
-		OLED_ShowStr(0 , 4,"stop watch", 1);
-		OLED_ShowStr(0 , 6,"about me", 1);
+		OLED_DisString_CH(0, 0, "校准");
+		OLED_DisString_CH(0 , 2,"闹钟");
+		OLED_DisString_CH(0 , 4,"计时器");
+		OLED_DisString_CH(0 , 6,"关于我");
 	}
 	if(page==3)
 	{
-		OLED_ShowStr(0, 0, "time calibration", 1);
-		OLED_ShowStr(0 , 2,"day calibration", 1);
+		OLED_DisString_CH(0, 0, "时间校准");
+		OLED_DisString_CH(0 , 2,"日期校准");
 	
 	}
 	if(page==4)
 	{
 		sprintf((char*)str_time_set,"%0.2d:%0.2d:%0.2d",time_set.tm_hour, time_set.tm_min, time_set.tm_sec);
 		OLED_ShowStr(35 , 3, str_time_set, 1);
-		OLED_ShowStr(0, 7,"+", 1);OLED_ShowStr(40, 7, "-", 1);OLED_ShowStr(90, 7, "next", 1);
+		OLED_ShowStr(0, 7,"+", 1);OLED_ShowStr(40, 7, "-", 1);OLED_DisString_CH(70, 6, "下一个");
 	}
 	if(page==5)
 	{
 		sprintf((char*)str_day_set,"%0.4d-%0.2d-%0.2d", time_set.tm_year, time_set.tm_mon, time_set.tm_mday);
 		OLED_ShowStr(30, 0, str_day_set, 1);
-		OLED_ShowStr(0, 7,"+", 1);OLED_ShowStr(40, 7, "-", 1);OLED_ShowStr(90, 7, "next", 1);
+		OLED_ShowStr(0, 7,"+", 1);OLED_ShowStr(40, 7, "-", 1);OLED_DisString_CH(70, 6, "下一个");
 	}
 	if(page==6)
 	{
 		sprintf((char*)str_alarm_time,"%0.2d:%0.2d:%0.2d",alarm_time.tm_hour, alarm_time.tm_min, alarm_time.tm_sec);
 		OLED_ShowStr(35 , 3, str_alarm_time, 1);
-		OLED_ShowStr(70 , 7, "settings", 1);
-		if(alarm_flag==1)		OLED_ShowStr(0 , 7, "on", 1);
-		else		OLED_ShowStr(0 , 7, "off", 1);
+		OLED_DisString_CH(70 , 6, "设置");
+		if(alarm_flag==1)		OLED_DisString_CH(0 , 6, "开");
+		else		OLED_DisString_CH(0 , 6, "关");
 	}
 	if(page==7)
 	{
 		sprintf((char*)str_alarm_time,"%0.2d:%0.2d:%0.2d",alarm_time.tm_hour, alarm_time.tm_min, alarm_time.tm_sec);
 		OLED_ShowStr(35 , 3, str_alarm_time, 1);
-		OLED_ShowStr(0, 7,"+", 1);OLED_ShowStr(40, 7, "-", 1);OLED_ShowStr(90, 7, "next", 1);
+		OLED_ShowStr(0, 7,"+", 1);OLED_ShowStr(40, 7, "-", 1);OLED_DisString_CH(70, 6, "下一个");
 	}
 	if(page==8)
 	{
 		sprintf((char*)str_stop_time,"%0.2d:%0.2d:%0.2d",stopwatch_time.tm_hour, stopwatch_time.tm_min, stopwatch_time.tm_sec);
 		OLED_ShowStr(35 , 3, str_stop_time, 1);
-		if(stopwatch_flag==0)OLED_ShowStr(0, 7,"start", 1);
-		else	OLED_ShowStr(0, 7, "stop", 1);
-		OLED_ShowStr(70, 7, "reset", 1);
+		if(stopwatch_flag==0)OLED_DisString_CH(0, 6,"开");
+		else	OLED_DisString_CH(0, 6, "停");
+		OLED_DisString_CH(70, 6, "复位");
 	}
 	if(page==9)
 	{
 		
 		OLED_ShowStr(35 , 3, "2019214145", 1);
-		OLED_ShowStr(35 , 5, "YangJian", 1);
+		OLED_DisString_CH(35 , 5, "杨建");
 		
 	}
 

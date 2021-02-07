@@ -174,40 +174,50 @@ void BASIC_TIM_IRQHandler(void)
 			i=0;
 			//page0
 			if(page==0&&next%2==0){
-				OLED_ShowStr(0, 7, "    ", 1);
+				OLED_ShowStr(0, 6, "      ", 1);
+				OLED_ShowStr(0, 7, "      ", 1);
 			}
 			if(page==0&&next%2==1){
-				OLED_ShowStr(90, 7, "     ", 1);
+				OLED_ShowStr(90, 6, "      ", 1);
+				OLED_ShowStr(90, 7, "      ", 1);
 			}	
 			//page1
 			if(page==1&&next%2==0){
-				OLED_ShowStr(0, 7, "    ", 1);
+				OLED_ShowStr(0, 6, "      ", 1);
+				OLED_ShowStr(0, 7, "      ", 1);
 				DHT11_Read_TempAndHumidity(&dht11_data);
 			}
 			if(page==1&&next%2==1){
-				OLED_ShowStr(70, 7, "         ", 1);
+				OLED_ShowStr(90, 6, "      ", 1);
+				OLED_ShowStr(90, 7, "      ", 1);
 				DHT11_Read_TempAndHumidity(&dht11_data);
 			}
 			//page2
 			if(page==2&&next%4==0){
 				OLED_ShowStr(0, 0, "           ", 1);
+				OLED_ShowStr(0, 1, "           ", 1);
 			}
 			if(page==2&&next%4==1){
-				OLED_ShowStr(0, 2, "     ", 1);
+				OLED_ShowStr(0, 2, "      ", 1);
+				OLED_ShowStr(0, 3, "      ", 1);
 			}
 			if(page==2&&next%4==2){
 				OLED_ShowStr(0, 4, "          ", 1);
+				OLED_ShowStr(0, 5, "          ", 1);
 			}
 			if(page==2&&next%4==3){
 				OLED_ShowStr(0 , 6,"        ", 1);
+				OLED_ShowStr(0 , 7,"        ", 1);
 			}			
 			
 			//page3
 			if(page==3&&next%2==0){
 				OLED_ShowStr(0, 0, "                ", 1);
+				OLED_ShowStr(0, 1, "                ", 1);
 			}
 			if(page==3&&next%2==1){
 				OLED_ShowStr(0, 2, "               ", 1);
+				OLED_ShowStr(0, 3, "               ", 1);
 			}
 			//page4
 			if(page==4&&next%3==0){
@@ -217,7 +227,8 @@ void BASIC_TIM_IRQHandler(void)
 				OLED_ShowStr(40, 7, " ", 1);
 			}
 			if(page==4&&next%3==2){
-				OLED_ShowStr(90, 7, "    ", 1);
+				OLED_ShowStr(70, 6, "          ", 1);
+				OLED_ShowStr(70, 7, "          ", 1);
 			}
 			//page5
 			if(page==5&&next%3==0){
@@ -227,13 +238,16 @@ void BASIC_TIM_IRQHandler(void)
 				OLED_ShowStr(40, 7, " ", 1);
 			}
 			if(page==5&&next%3==2){
-				OLED_ShowStr(90, 7, "    ", 1);
+				OLED_ShowStr(70, 6, "          ", 1);
+				OLED_ShowStr(70, 7, "          ", 1);
 			}
 			//page6
 			if(page==6&&next%2==0){
+				OLED_ShowStr(0, 6, "   ", 1);
 				OLED_ShowStr(0, 7, "   ", 1);
 			}
 			if(page==6&&next%2==1){
+				OLED_ShowStr(70, 6, "        ", 1);
 				OLED_ShowStr(70, 7, "        ", 1);
 			}
 			//page7
@@ -244,13 +258,16 @@ void BASIC_TIM_IRQHandler(void)
 				OLED_ShowStr(40, 7, " ", 1);
 			}
 			if(page==7&&next%3==2){
-				OLED_ShowStr(90, 7, "    ", 1);
+				OLED_ShowStr(70, 6, "          ", 1);
+				OLED_ShowStr(70, 7, "          ", 1);
 			}
 			//page8
 			if(page==8&&next%2==0){
+				OLED_ShowStr(0, 6, "     ", 1);
 				OLED_ShowStr(0, 7, "     ", 1);
 			}
 			if(page==8&&next%2==1){
+				OLED_ShowStr(70, 6, "      ", 1);
 				OLED_ShowStr(70, 7, "      ", 1);
 			}					
 		}

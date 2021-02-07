@@ -11,6 +11,7 @@
 uint8_t alarm_flag=0,stopwatch_flag=0;
 uint8_t str_day[15]={0};
 uint8_t str_time[15]={0};
+uint8_t str_canderday[50]={0};
 uint8_t str_time_set[15]={0};
 uint8_t str_day_set[15]={0};
 uint8_t str_alarm_time[15]={0};
@@ -47,11 +48,9 @@ int main()
 		I2C_Configuration();
 		OLED_Init();
 		KEY_GPIO_Config();
-	
 	  RTC_NVIC_Config();
 		OLED_CLS();
-		OLED_DisString_CH(0,0,"”·∫¿ø°≈£");
-//	  RTC_CheckAndConfig(&systmtime);
+	  RTC_CheckAndConfig(&systmtime);
 		BASIC_TIM_Init();
 		Beep_Config();
 		DHT11_Init();

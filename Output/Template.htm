@@ -3,9 +3,9 @@
 <title>Static Call Graph - [..\..\Output\Template.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\..\Output\Template.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Feb 07 11:26:57 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Feb 07 12:40:35 2021
 <BR><P>
-<H3>Maximum Stack Usage =        352 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        328 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 RTC_IRQHandler &rArr; Time_Display &rArr; to_tm &rArr; GregorianDay
 <P>
@@ -91,9 +91,9 @@ Function Pointers
  <LI><a href="#[4a]">__backspace</a> from fgetc_b.o(.text) referenced from scanf_char_file.o(.text)
  <LI><a href="#[48]">__main</a> from entry.o(.ARM.Collect$$$$00000000) referenced from startup_stm32f10x_hd.o(.text)
  <LI><a href="#[4b]">_scanf_char_input</a> from scanf_char.o(.text) referenced from scanf_char.o(.text)
- <LI><a href="#[4e]">_sputc</a> from printf3.o(i._sputc) referenced from printf3.o(i.__0sprintf$3)
+ <LI><a href="#[4e]">_sputc</a> from printf1.o(i._sputc) referenced from printf1.o(i.__0sprintf$1)
  <LI><a href="#[49]">fgetc</a> from bsp_usart.o(.text) referenced from scanf_char_file.o(.text)
- <LI><a href="#[4d]">fputc</a> from bsp_usart.o(.text) referenced from printf3.o(i.__0printf$3)
+ <LI><a href="#[4d]">fputc</a> from bsp_usart.o(.text) referenced from printf1.o(i.__0printf$1)
  <LI><a href="#[4c]">isspace</a> from isspace_c.o(.text) referenced from scanf_char.o(.text)
  <LI><a href="#[46]">main</a> from main.o(.text) referenced from entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
@@ -352,12 +352,14 @@ Global Symbols
 <P><STRONG><a name="[94]"></a>BKP_WriteBackupRegister</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, stm32f10x_bkp.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = BKP_WriteBackupRegister
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
-<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI9_5_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI9_5_IRQHandler
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 </UL>
 
-<P><STRONG><a name="[ac]"></a>BKP_ReadBackupRegister</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, stm32f10x_bkp.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
+<P><STRONG><a name="[ab]"></a>BKP_ReadBackupRegister</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, stm32f10x_bkp.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = BKP_ReadBackupRegister
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 </UL>
 
 <P><STRONG><a name="[110]"></a>BKP_GetFlagStatus</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_bkp.o(.text), UNUSED)
@@ -579,8 +581,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[a4]"></a>PWR_BackupAccessCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_pwr.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Configuration
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Configuration
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 </UL>
 
 <P><STRONG><a name="[13c]"></a>PWR_PVDCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_pwr.o(.text), UNUSED)
@@ -605,8 +607,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = RCC_GetFlagStatus
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_WaitForHSEStartUp
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Configuration
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 </UL>
 
 <P><STRONG><a name="[5d]"></a>RCC_WaitForHSEStartUp</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, stm32f10x_rcc.o(.text), UNUSED)
@@ -641,8 +643,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Configuration
 </UL>
 
-<P><STRONG><a name="[ad]"></a>RCC_LSICmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
+<P><STRONG><a name="[ac]"></a>RCC_LSICmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 </UL>
 
 <P><STRONG><a name="[a6]"></a>RCC_RTCCLKConfig</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text))
@@ -674,8 +676,8 @@ Global Symbols
 
 <P><STRONG><a name="[a3]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BASIC_TIM_Mode_Config
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Configuration
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Configuration
 </UL>
 
@@ -703,8 +705,8 @@ Global Symbols
 
 <P><STRONG><a name="[153]"></a>RCC_MCOConfig</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text), UNUSED)
 
-<P><STRONG><a name="[ae]"></a>RCC_ClearFlag</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
+<P><STRONG><a name="[ad]"></a>RCC_ClearFlag</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 </UL>
 
 <P><STRONG><a name="[154]"></a>RCC_GetITStatus</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text), UNUSED)
@@ -712,8 +714,8 @@ Global Symbols
 <P><STRONG><a name="[155]"></a>RCC_ClearITPendingBit</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_rcc.o(.text), UNUSED)
 
 <P><STRONG><a name="[a9]"></a>RTC_ITConfig</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rtc.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Configuration
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Configuration
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 </UL>
 
 <P><STRONG><a name="[60]"></a>RTC_EnterConfigMode</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_rtc.o(.text))
@@ -729,7 +731,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[87]"></a>RTC_GetCounter</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_rtc.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Time_Show
+<BR><BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Time_Show
 <LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
 </UL>
 
@@ -759,15 +761,15 @@ Global Symbols
 <P><STRONG><a name="[156]"></a>RTC_GetDivider</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f10x_rtc.o(.text), UNUSED)
 
 <P><STRONG><a name="[8a]"></a>RTC_WaitForLastTask</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_rtc.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Configuration
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Configuration
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Time_Adjust
 <LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 </UL>
 
 <P><STRONG><a name="[a8]"></a>RTC_WaitForSynchro</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, stm32f10x_rtc.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Configuration
+<BR><BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Configuration
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 </UL>
 
 <P><STRONG><a name="[157]"></a>RTC_GetFlagStatus</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, stm32f10x_rtc.o(.text), UNUSED)
@@ -1155,14 +1157,14 @@ Global Symbols
 
 <P><STRONG><a name="[1c3]"></a>USART_ClearITPendingBit</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, stm32f10x_usart.o(.text), UNUSED)
 
-<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 74 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = main &rArr; OLED_DisString_CH &rArr; OLED_DispChar_CH &rArr; GetGBKCode_from_EXFlash &rArr; SPI_FLASH_Init &rArr; GPIO_Init
+<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = main &rArr; RTC_CheckAndConfig &rArr; Time_Adjust &rArr; GregorianDay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;play_failed
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Config
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_NVIC_Config
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Init
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DisString_CH
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_CLS
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KEY_GPIO_Config
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_Configuration
@@ -1201,7 +1203,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
 <P><STRONG><a name="[d]"></a>RTC_IRQHandler</STRONG> (Thumb, 168 bytes, Stack size 8 bytes, stm32f10x_it.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = RTC_IRQHandler &rArr; Time_Display &rArr; to_tm &rArr; GregorianDay
+<BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = RTC_IRQHandler &rArr; Time_Display &rArr; to_tm &rArr; GregorianDay
 </UL>
 <BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ClearITPendingBit
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_GetITStatus
@@ -1212,7 +1214,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[40]"></a>TIM6_IRQHandler</STRONG> (Thumb, 1056 bytes, Stack size 8 bytes, stm32f10x_it.o(.text))
+<P><STRONG><a name="[40]"></a>TIM6_IRQHandler</STRONG> (Thumb, 1252 bytes, Stack size 8 bytes, stm32f10x_it.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = TIM6_IRQHandler &rArr; OLED_ShowStr &rArr; OLED_SetPos &rArr; WriteCmd &rArr; I2C_WriteByte &rArr; I2C_CheckEvent
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearITPendingBit
@@ -1222,7 +1224,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[21]"></a>EXTI9_5_IRQHandler</STRONG> (Thumb, 2138 bytes, Stack size 32 bytes, stm32f10x_it.o(.text))
+<P><STRONG><a name="[21]"></a>EXTI9_5_IRQHandler</STRONG> (Thumb, 2128 bytes, Stack size 32 bytes, stm32f10x_it.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = EXTI9_5_IRQHandler &rArr; Time_Regulate_Get &rArr; __0scanf &rArr; __vfscanf_char_file &rArr; __vfscanf_char &rArr; __vfscanf &rArr; _scanf_int
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
@@ -1270,22 +1272,16 @@ Global Symbols
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSkyEarth
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetChinaCalendar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Time_Display
+<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;oled_page_display
 </UL>
 
-<P><STRONG><a name="[9c]"></a>GetJieQi</STRONG> (Thumb, 158 bytes, Stack size 24 bytes, bsp_calendar.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GetJieQi
-</UL>
-<BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetJieQiStr
+<P><STRONG><a name="[9c]"></a>GetJieQi</STRONG> (Thumb, 158 bytes, Stack size 24 bytes, bsp_calendar.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetJieQiStr
 </UL>
 
-<P><STRONG><a name="[9b]"></a>GetJieQiStr</STRONG> (Thumb, 300 bytes, Stack size 32 bytes, bsp_calendar.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = GetJieQiStr &rArr; GetJieQi
-</UL>
-<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetJieQi
+<P><STRONG><a name="[9b]"></a>GetJieQiStr</STRONG> (Thumb, 300 bytes, Stack size 32 bytes, bsp_calendar.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetJieQi
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StrCopy
-</UL>
-<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Time_Display
 </UL>
 
 <P><STRONG><a name="[9d]"></a>GregorianDay</STRONG> (Thumb, 146 bytes, Stack size 72 bytes, bsp_date.o(.text))
@@ -1347,58 +1343,61 @@ Global Symbols
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mktimev
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GregorianDay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
-<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI9_5_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI9_5_IRQHandler
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 </UL>
 
-<P><STRONG><a name="[ab]"></a>RTC_CheckAndConfig</STRONG> (Thumb, 140 bytes, Stack size 8 bytes, bsp_rtc.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_WaitForSynchro
+<P><STRONG><a name="[7f]"></a>RTC_CheckAndConfig</STRONG> (Thumb, 140 bytes, Stack size 8 bytes, bsp_rtc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = RTC_CheckAndConfig &rArr; Time_Adjust &rArr; GregorianDay
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_WaitForSynchro
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_WaitForLastTask
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ITConfig
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_ClearFlag
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_ClearFlag
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_LSICmd
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_LSICmd
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetFlagStatus
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWR_BackupAccessCmd
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BKP_ReadBackupRegister
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BKP_ReadBackupRegister
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BKP_WriteBackupRegister
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Time_Adjust
+</UL>
+<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[95]"></a>Time_Regulate_Get</STRONG> (Thumb, 452 bytes, Stack size 16 bytes, bsp_rtc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = Time_Regulate_Get &rArr; __0scanf &rArr; __vfscanf_char_file &rArr; __vfscanf_char &rArr; __vfscanf &rArr; _scanf_int
 </UL>
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0scanf
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0scanf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI9_5_IRQHandler
 </UL>
 
-<P><STRONG><a name="[88]"></a>Time_Display</STRONG> (Thumb, 234 bytes, Stack size 248 bytes, bsp_rtc.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = Time_Display &rArr; to_tm &rArr; GregorianDay
+<P><STRONG><a name="[88]"></a>Time_Display</STRONG> (Thumb, 100 bytes, Stack size 224 bytes, bsp_rtc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = Time_Display &rArr; to_tm &rArr; GregorianDay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;to_tm
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetJieQiStr
-<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetChinaCalendarStr
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetChinaCalendar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Time_Show
+<BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Time_Show
 <LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
 </UL>
 
-<P><STRONG><a name="[b1]"></a>Time_Show</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, bsp_rtc.o(.text), UNUSED)
+<P><STRONG><a name="[b0]"></a>Time_Show</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, bsp_rtc.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_GetCounter
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Time_Display
 </UL>
 
-<P><STRONG><a name="[89]"></a>oled_page_display</STRONG> (Thumb, 1262 bytes, Stack size 24 bytes, bsp_rtc.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = oled_page_display &rArr; OLED_ShowStr &rArr; OLED_SetPos &rArr; WriteCmd &rArr; I2C_WriteByte &rArr; I2C_CheckEvent
+<P><STRONG><a name="[89]"></a>oled_page_display</STRONG> (Thumb, 1268 bytes, Stack size 16 bytes, bsp_rtc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = oled_page_display &rArr; OLED_DisString_CH &rArr; OLED_DispChar_CH &rArr; GetGBKCode_from_EXFlash &rArr; SPI_FLASH_Init &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Show_Numphoto
+<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Show_Numphoto
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DisString_CH
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetChinaCalendarStr
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowStr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
@@ -1421,7 +1420,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetFlagStatus
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> printf3.o(i.__0printf$3)
+<BR>[Address Reference Count : 1]<UL><LI> printf1.o(i.__0printf$1)
 </UL>
 <P><STRONG><a name="[49]"></a>fgetc</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, bsp_usart.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = fgetc
@@ -1478,7 +1477,7 @@ Global Symbols
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DispChar_CH
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowCN
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Fill
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Show_Numphoto
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Show_Numphoto
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowStr
 </UL>
 
@@ -1499,7 +1498,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DrawBMP
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DispChar_CH
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowCN
-<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Show_Numphoto
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Show_Numphoto
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowStr
 </UL>
 
@@ -1544,7 +1543,7 @@ Global Symbols
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WriteDat
 </UL>
 
-<P><STRONG><a name="[b2]"></a>OLED_Show_Numphoto</STRONG> (Thumb, 116 bytes, Stack size 24 bytes, oled_i2c.o(.text))
+<P><STRONG><a name="[b1]"></a>OLED_Show_Numphoto</STRONG> (Thumb, 116 bytes, Stack size 24 bytes, oled_i2c.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = OLED_Show_Numphoto &rArr; OLED_SetPos &rArr; WriteCmd &rArr; I2C_WriteByte &rArr; I2C_CheckEvent
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SetPos
@@ -1560,15 +1559,15 @@ Global Symbols
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SetPos
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WriteDat
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DisString_CH
+<BR>[Called By]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DisString_CH
 </UL>
 
-<P><STRONG><a name="[7f]"></a>OLED_DisString_CH</STRONG> (Thumb, 50 bytes, Stack size 24 bytes, oled_i2c.o(.text))
+<P><STRONG><a name="[b2]"></a>OLED_DisString_CH</STRONG> (Thumb, 50 bytes, Stack size 24 bytes, oled_i2c.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = OLED_DisString_CH &rArr; OLED_DispChar_CH &rArr; GetGBKCode_from_EXFlash &rArr; SPI_FLASH_Init &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DispChar_CH
 </UL>
-<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;oled_page_display
 </UL>
 
 <P><STRONG><a name="[cb]"></a>OLED_DrawBMP</STRONG> (Thumb, 116 bytes, Stack size 40 bytes, oled_i2c.o(.text), UNUSED)
@@ -1845,7 +1844,7 @@ Global Symbols
 
 <P><STRONG><a name="[1c5]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
 
-<P><STRONG><a name="[af]"></a>__0scanf</STRONG> (Thumb, 26 bytes, Stack size 56 bytes, __0scanf.o(.text))
+<P><STRONG><a name="[ae]"></a>__0scanf</STRONG> (Thumb, 26 bytes, Stack size 56 bytes, __0scanf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = __0scanf &rArr; __vfscanf_char_file &rArr; __vfscanf_char &rArr; __vfscanf &rArr; _scanf_int
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__vfscanf_char_file
@@ -1876,7 +1875,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__vfscanf_char
 </UL>
-<BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0scanf
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0scanf
 </UL>
 
 <P><STRONG><a name="[50]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
@@ -1925,31 +1924,30 @@ Global Symbols
 
 <P><STRONG><a name="[1cc]"></a>__decompress1</STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
 
-<P><STRONG><a name="[fd]"></a>__0printf$3</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3), UNUSED)
+<P><STRONG><a name="[fd]"></a>__0printf$1</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[1cd]"></a>__1printf$3</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3), UNUSED)
+<P><STRONG><a name="[1cd]"></a>__1printf$1</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1), UNUSED)
 
-<P><STRONG><a name="[91]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0printf$3))
+<P><STRONG><a name="[91]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0printf$1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_FLASH_PageWrite
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_TIMEOUT_UserCallback
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Time_Regulate_Get
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Time_Display
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI9_5_IRQHandler
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_CheckAndConfig
 </UL>
 
-<P><STRONG><a name="[ff]"></a>__0sprintf$3</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, printf3.o(i.__0sprintf$3), UNUSED)
+<P><STRONG><a name="[ff]"></a>__0sprintf$1</STRONG> (Thumb, 34 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[1ce]"></a>__1sprintf$3</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0sprintf$3), UNUSED)
+<P><STRONG><a name="[1ce]"></a>__1sprintf$1</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1), UNUSED)
 
-<P><STRONG><a name="[b0]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf3.o(i.__0sprintf$3))
+<P><STRONG><a name="[af]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf1.o(i.__0sprintf$1))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2sprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;oled_page_display
@@ -2079,17 +2077,17 @@ Local Symbols
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_FLASH_SendByte
 </UL>
 
-<P><STRONG><a name="[fe]"></a>_printf_core</STRONG> (Thumb, 436 bytes, Stack size 96 bytes, printf3.o(i._printf_core), UNUSED)
+<P><STRONG><a name="[fe]"></a>_printf_core</STRONG> (Thumb, 336 bytes, Stack size 88 bytes, printf1.o(i._printf_core), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0sprintf$3
-<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$3
+<BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0sprintf$1
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$1
 </UL>
 
-<P><STRONG><a name="[4e]"></a>_sputc</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, printf3.o(i._sputc))
-<BR><BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0sprintf$3
+<P><STRONG><a name="[4e]"></a>_sputc</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, printf1.o(i._sputc))
+<BR><BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0sprintf$1
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> printf3.o(i.__0sprintf$3)
+<BR>[Address Reference Count : 1]<UL><LI> printf1.o(i.__0sprintf$1)
 </UL>
 <P><STRONG><a name="[4b]"></a>_scanf_char_input</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, scanf_char.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> scanf_char.o(.text)
