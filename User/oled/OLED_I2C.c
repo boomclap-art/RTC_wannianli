@@ -337,15 +337,13 @@ void OLED_Show_Numphoto(unsigned char x, unsigned char y, unsigned char N)
 	}
 
 }
-void OLED_DispChar_CH ( uint16_t x, uint16_t y, char * pStr )
+void OLED_DispChar_CH ( uint16_t x, uint16_t y, uint16_t usCh)
 {
 	unsigned char wm=0;
-	uint16_t usCh;
-	uint8_t ucBuffer[32];	
-	usCh = * ( uint16_t * ) pStr;	
-	usCh = ( usCh << 8 ) + ( usCh >> 8 );
+	uint8_t ucBuffer[32];		
 	//取字模数据  
   GetGBKCode ( ucBuffer, usCh );	
+	
 	OLED_SetPos(x , y);
 	for(wm = 0;wm <16;wm++)
 	{
@@ -358,6 +356,18 @@ void OLED_DispChar_CH ( uint16_t x, uint16_t y, char * pStr )
 	}	
 }
 
+void OLED_DisString_CH (uint16_t x, uint16_t y, char * pStr)
+{
+	uint16_t usCh;
+	while(*pStr != '\0')
+	{
+		usCh=*(uint16_t *)pStr;
+		usCh=(usCh<<8)+(usCh>>8);
+		OLED_DispChar_CH(x,y,usCh);
+		x+=16;
+		pStr+=2;
+	}
+}
 
  /**
   * @brief  OLED_DrawBMP，显示BMP位图

@@ -50,8 +50,8 @@ int main()
 	
 	  RTC_NVIC_Config();
 		OLED_CLS();
-	OLED_DispChar_CH(0,0,"÷–");
-	  RTC_CheckAndConfig(&systmtime);
+		OLED_DisString_CH(0,0,"”·∫¿ø°≈£");
+//	  RTC_CheckAndConfig(&systmtime);
 		BASIC_TIM_Init();
 		Beep_Config();
 		DHT11_Init();

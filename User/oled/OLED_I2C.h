@@ -40,6 +40,8 @@ void OLED_OFF(void);
 void OLED_ShowStr(unsigned char x, unsigned char y, unsigned char ch[], unsigned char TextSize);
 void OLED_ShowCN(unsigned char x, unsigned char y, unsigned char N);
 void OLED_DrawBMP(unsigned char x0,unsigned char y0,unsigned char x1,unsigned char y1,unsigned char BMP[]);
-void OLED_DispChar_CH ( uint16_t x, uint16_t y, char * pStr );
+void OLED_DispChar_CH ( uint16_t x, uint16_t y, uint16_t usCh);			//显示一个汉字,usCh为汉字的两个字节
+void OLED_DisString_CH (uint16_t x, uint16_t y, char * pStr);				//显示 汉字字符串;
+
 void OLED_Show_Numphoto(unsigned char x, unsigned char y, unsigned char N);
 #endif
