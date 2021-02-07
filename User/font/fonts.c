@@ -1038,7 +1038,7 @@ int GetGBKCode_from_EXFlash( uint8_t * pBuffer, uint16_t c)
         printf("没有找到字库,请使用刷外部FLASH程序（如何恢复出厂内容）工程将字库写入flash\n");
       }
 		}
-	
+	gbk_start_address =387*4096;
 	  High8bit= c >> 8;     /* 取高8位数据 */
     Low8bit= c & 0x00FF;  /* 取低8位数据 */		
 	  	

@@ -337,26 +337,25 @@ void OLED_Show_Numphoto(unsigned char x, unsigned char y, unsigned char N)
 	}
 
 }
-void ILI9341_DispChar_CH ( uint16_t x, uint16_t y, char * pStr )
+void OLED_DispChar_CH ( uint16_t x, uint16_t y, char * pStr )
 {
 	unsigned char wm=0;
 	uint16_t usCh;
-	uint8_t ucBuffer [ 32 ];	
+	uint8_t ucBuffer[32];	
 	usCh = * ( uint16_t * ) pStr;	
 	usCh = ( usCh << 8 ) + ( usCh >> 8 );
 	//取字模数据  
   GetGBKCode ( ucBuffer, usCh );	
 	OLED_SetPos(x , y);
-	for(wm = 0;wm < 16;wm++)
+	for(wm = 0;wm <16;wm++)
 	{
-		WriteDat(ucBuffer[wm]);
+		WriteDat(ucBuffer[wm*2]);
 	}
 	OLED_SetPos(x,y + 1);
-	for(wm = 16;wm < 32;wm++)
+	for(wm = 0;wm < 16;wm++)
 	{
-		WriteDat(ucBuffer[wm]);
-	}
-	
+		WriteDat(ucBuffer[wm*2+1]);
+	}	
 }
 
 
