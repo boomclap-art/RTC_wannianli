@@ -486,10 +486,10 @@ void oled_page_display(uint8_t page)
 	if(page==0)
 	{
 		OLED_ShowStr(30, 0, str_day, 1);
-		OLED_Show_Numphoto(0,2,systmtime.tm_min/10);
-		OLED_Show_Numphoto(26,2,systmtime.tm_min%10);
-		OLED_Show_Numphoto(52,2,systmtime.tm_sec/10);
-		OLED_Show_Numphoto(78,2,systmtime.tm_sec%10);
+		OLED_Show_Numphoto(0,2,systmtime.tm_hour/10);
+		OLED_Show_Numphoto(26,2,systmtime.tm_hour%10);
+		OLED_Show_Numphoto(62,2,systmtime.tm_min/10);
+		OLED_Show_Numphoto(88,2,systmtime.tm_min%10);
 		OLED_DisString_CH(0, 6, "²Ëµ¥");OLED_DisString_CH(90, 6, "Å©Àú");
 	}
 	if(page==1)

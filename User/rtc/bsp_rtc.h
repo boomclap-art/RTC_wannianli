@@ -14,7 +14,7 @@
 
 //使用LSE外部时钟 或 LSI内部时钟
 #define RTC_CLOCK_SOURCE_LSE      
-#define RTC_CLOCK_SOURCE_LSI
+//#define RTC_CLOCK_SOURCE_LSI
 
 
 

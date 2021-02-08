@@ -50,7 +50,7 @@ DATA    -->  PE6
 
 GND     -->  GND
 
-`IIC oled 屏幕`
+`IIC oled 0.96寸屏幕`
 
 使用IIC1
 
