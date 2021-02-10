@@ -178,7 +178,7 @@ void OLED_SetPos(unsigned char x, unsigned char y) //设置起始点坐标
 { 
 	WriteCmd(0xb0+y);
 	WriteCmd(((x&0xf0)>>4)|0x10);
-	WriteCmd((x&0x0f)|0x01);
+	WriteCmd((x&0x0f)|0x00);
 }
 
  /**
