@@ -44,4 +44,6 @@ void OLED_DispChar_CH ( uint16_t x, uint16_t y, uint16_t usCh);			//ÏÔÊ¾Ò»¸öºº×Ö
 void OLED_DisString_CH (uint16_t x, uint16_t y, char * pStr);				//ÏÔÊ¾ ºº×Ö×Ö·û´®;
 
 void OLED_Show_Numphoto(unsigned char x, unsigned char y, unsigned char N);
+void OLED_Show_ClockPots(unsigned char x, unsigned char y);
+void OLED_Clr_ClockPots(unsigned char x, unsigned char y);
 #endif

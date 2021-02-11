@@ -488,14 +488,15 @@ void oled_page_display(uint8_t page)
 		OLED_ShowStr(30, 0, str_day, 1);
 		OLED_Show_Numphoto(0,2,systmtime.tm_hour/10);
 		OLED_Show_Numphoto(26,2,systmtime.tm_hour%10);
-		OLED_Show_Numphoto(62,2,systmtime.tm_min/10);
-		OLED_Show_Numphoto(88,2,systmtime.tm_min%10);
+		OLED_Show_ClockPots(56, 2);
+		OLED_Show_Numphoto(74,2,systmtime.tm_min/10);
+		OLED_Show_Numphoto(100,2,systmtime.tm_min%10);
 		OLED_DisString_CH(0, 6, "²Ëµ¥");OLED_DisString_CH(90, 6, "Å©Àú");
 	}
 	if(page==1)
 	{
 		GetChinaCalendarStr((u16)systmtime.tm_year,(u8)systmtime.tm_mon,(u8)systmtime.tm_mday,str_canderday);
-		OLED_DisString_CH(0,2,str_canderday);
+		OLED_DisString_CH(0,2,(char *)str_canderday);
 		OLED_DisString_CH(0,0,"Êª");
 		sprintf((char*)str_tempandhumidity,":%0.2d.%0.2d",dht11_data.humi_int,dht11_data.humi_deci);
 		OLED_ShowStr(16, 0, str_tempandhumidity, 1);

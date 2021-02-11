@@ -18,7 +18,7 @@ uint8_t str_alarm_time[15]={0};
 uint8_t str_stop_time[15]={0};
 uint8_t str_tempandhumidity[20]={0};
 uint8_t page=0,page_before=0,next=0,back_page=0,alarm_ring=0;
-uint32_t i=0;
+uint32_t Flicker_i=0;
 struct rtc_time systmtime=
 {
 0,0,0,1,1,2021,0

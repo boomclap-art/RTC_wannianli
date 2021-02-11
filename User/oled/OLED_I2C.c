@@ -337,6 +337,53 @@ void OLED_Show_Numphoto(unsigned char x, unsigned char y, unsigned char N)
 	}
 
 }
+
+void OLED_Show_ClockPots(unsigned char x, unsigned char y)
+{
+	unsigned char wm=0;
+	unsigned int  adder=0;
+	OLED_SetPos(x , y);
+	for(wm = 0;wm < 12;wm++)
+	{
+		WriteDat(ClockPots[adder]);
+		adder += 1;
+	}
+	OLED_SetPos(x,y + 1);
+	for(wm = 0;wm < 12;wm++)
+	{
+		WriteDat(ClockPots[adder]);
+		adder += 1;
+	}
+	OLED_SetPos(x,y + 2);
+	for(wm = 0;wm < 12;wm++)
+	{
+		WriteDat(ClockPots[adder]);
+		adder += 1;
+	}
+}
+void OLED_Clr_ClockPots(unsigned char x, unsigned char y)
+{
+	unsigned char wm=0;
+	unsigned int  adder=0;
+	OLED_SetPos(x , y);
+	for(wm = 0;wm < 12;wm++)
+	{
+		WriteDat(0x00);
+		adder += 1;
+	}
+	OLED_SetPos(x,y + 1);
+	for(wm = 0;wm < 12;wm++)
+	{
+		WriteDat(0x00);
+		adder += 1;
+	}
+	OLED_SetPos(x,y + 2);
+	for(wm = 0;wm < 12;wm++)
+	{
+		WriteDat(0x00);
+		adder += 1;
+	}
+}
 void OLED_DispChar_CH ( uint16_t x, uint16_t y, uint16_t usCh)
 {
 	unsigned char wm=0;

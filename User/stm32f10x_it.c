@@ -17,7 +17,7 @@ extern struct rtc_time stopwatch_time;
 extern DHT11_Data_TypeDef dht11_data;
 extern uint8_t alarm_flag,stopwatch_flag,alarm_ring;
 extern uint8_t page,page_before,next,back_page;
-extern uint32_t i;
+extern uint32_t Flicker_i;
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
   */
@@ -171,106 +171,115 @@ void BASIC_TIM_IRQHandler(void)
 {
 	if ( TIM_GetITStatus( BASIC_TIM, TIM_IT_Update) != RESET ) 
 	{
-			i=0;
-			//page0
-			if(page==0&&next%2==0){
-				OLED_ShowStr(0, 6, "      ", 1);
-				OLED_ShowStr(0, 7, "      ", 1);
-			}
-			if(page==0&&next%2==1){
-				OLED_ShowStr(90, 6, "      ", 1);
-				OLED_ShowStr(90, 7, "      ", 1);
-			}	
-			//page1
-			if(page==1&&next%2==0){
-				OLED_ShowStr(0, 6, "      ", 1);
-				OLED_ShowStr(0, 7, "      ", 1);
-				DHT11_Read_TempAndHumidity(&dht11_data);
-			}
-			if(page==1&&next%2==1){
-				OLED_ShowStr(90, 6, "      ", 1);
-				OLED_ShowStr(90, 7, "      ", 1);
-				DHT11_Read_TempAndHumidity(&dht11_data);
-			}
-			//page2
-			if(page==2&&next%4==0){
-				OLED_ShowStr(0, 0, "           ", 1);
-				OLED_ShowStr(0, 1, "           ", 1);
-			}
-			if(page==2&&next%4==1){
-				OLED_ShowStr(0, 2, "      ", 1);
-				OLED_ShowStr(0, 3, "      ", 1);
-			}
-			if(page==2&&next%4==2){
-				OLED_ShowStr(0, 4, "          ", 1);
-				OLED_ShowStr(0, 5, "          ", 1);
-			}
-			if(page==2&&next%4==3){
-				OLED_ShowStr(0 , 6,"        ", 1);
-				OLED_ShowStr(0 , 7,"        ", 1);
-			}			
-			
-			//page3
-			if(page==3&&next%2==0){
-				OLED_ShowStr(0, 0, "                ", 1);
-				OLED_ShowStr(0, 1, "                ", 1);
-			}
-			if(page==3&&next%2==1){
-				OLED_ShowStr(0, 2, "               ", 1);
-				OLED_ShowStr(0, 3, "               ", 1);
-			}
-			//page4
-			if(page==4&&next%3==0){
-				OLED_ShowStr(0, 7, " ", 1);
-			}
-			if(page==4&&next%3==1){
-				OLED_ShowStr(40, 7, " ", 1);
-			}
-			if(page==4&&next%3==2){
-				OLED_ShowStr(70, 6, "          ", 1);
-				OLED_ShowStr(70, 7, "          ", 1);
-			}
-			//page5
-			if(page==5&&next%3==0){
-				OLED_ShowStr(0, 7, " ", 1);
-			}
-			if(page==5&&next%3==1){
-				OLED_ShowStr(40, 7, " ", 1);
-			}
-			if(page==5&&next%3==2){
-				OLED_ShowStr(70, 6, "          ", 1);
-				OLED_ShowStr(70, 7, "          ", 1);
-			}
-			//page6
-			if(page==6&&next%2==0){
-				OLED_ShowStr(0, 6, "   ", 1);
-				OLED_ShowStr(0, 7, "   ", 1);
-			}
-			if(page==6&&next%2==1){
-				OLED_ShowStr(70, 6, "        ", 1);
-				OLED_ShowStr(70, 7, "        ", 1);
-			}
-			//page7
-			if(page==7&&next%3==0){
-				OLED_ShowStr(0, 7, " ", 1);
-			}
-			if(page==7&&next%3==1){
-				OLED_ShowStr(40, 7, " ", 1);
-			}
-			if(page==7&&next%3==2){
-				OLED_ShowStr(70, 6, "          ", 1);
-				OLED_ShowStr(70, 7, "          ", 1);
-			}
-			//page8
-			if(page==8&&next%2==0){
-				OLED_ShowStr(0, 6, "     ", 1);
-				OLED_ShowStr(0, 7, "     ", 1);
-			}
-			if(page==8&&next%2==1){
-				OLED_ShowStr(70, 6, "      ", 1);
-				OLED_ShowStr(70, 7, "      ", 1);
-			}					
+		if(Flicker_i%5==3)
+		{
+				//page0
+				if(page==0&&next%2==0){
+					OLED_ShowStr(0, 6, "      ", 1);
+					OLED_ShowStr(0, 7, "      ", 1);
+				}
+				if(page==0&&next%2==1){
+					OLED_ShowStr(90, 6, "      ", 1);
+					OLED_ShowStr(90, 7, "      ", 1);
+				}	
+				//page1
+				if(page==1&&next%2==0){
+					OLED_ShowStr(0, 6, "      ", 1);
+					OLED_ShowStr(0, 7, "      ", 1);
+					DHT11_Read_TempAndHumidity(&dht11_data);
+				}
+				if(page==1&&next%2==1){
+					OLED_ShowStr(90, 6, "      ", 1);
+					OLED_ShowStr(90, 7, "      ", 1);
+					DHT11_Read_TempAndHumidity(&dht11_data);
+				}
+				//page2
+				if(page==2&&next%4==0){
+					OLED_ShowStr(0, 0, "           ", 1);
+					OLED_ShowStr(0, 1, "           ", 1);
+				}
+				if(page==2&&next%4==1){
+					OLED_ShowStr(0, 2, "      ", 1);
+					OLED_ShowStr(0, 3, "      ", 1);
+				}
+				if(page==2&&next%4==2){
+					OLED_ShowStr(0, 4, "          ", 1);
+					OLED_ShowStr(0, 5, "          ", 1);
+				}
+				if(page==2&&next%4==3){
+					OLED_ShowStr(0 , 6,"        ", 1);
+					OLED_ShowStr(0 , 7,"        ", 1);
+				}			
+				
+				//page3
+				if(page==3&&next%2==0){
+					OLED_ShowStr(0, 0, "                ", 1);
+					OLED_ShowStr(0, 1, "                ", 1);
+				}
+				if(page==3&&next%2==1){
+					OLED_ShowStr(0, 2, "               ", 1);
+					OLED_ShowStr(0, 3, "               ", 1);
+				}
+				//page4
+				if(page==4&&next%3==0){
+					OLED_ShowStr(0, 7, " ", 1);
+				}
+				if(page==4&&next%3==1){
+					OLED_ShowStr(40, 7, " ", 1);
+				}
+				if(page==4&&next%3==2){
+					OLED_ShowStr(70, 6, "          ", 1);
+					OLED_ShowStr(70, 7, "          ", 1);
+				}
+				//page5
+				if(page==5&&next%3==0){
+					OLED_ShowStr(0, 7, " ", 1);
+				}
+				if(page==5&&next%3==1){
+					OLED_ShowStr(40, 7, " ", 1);
+				}
+				if(page==5&&next%3==2){
+					OLED_ShowStr(70, 6, "          ", 1);
+					OLED_ShowStr(70, 7, "          ", 1);
+				}
+				//page6
+				if(page==6&&next%2==0){
+					OLED_ShowStr(0, 6, "   ", 1);
+					OLED_ShowStr(0, 7, "   ", 1);
+				}
+				if(page==6&&next%2==1){
+					OLED_ShowStr(70, 6, "        ", 1);
+					OLED_ShowStr(70, 7, "        ", 1);
+				}
+				//page7
+				if(page==7&&next%3==0){
+					OLED_ShowStr(0, 7, " ", 1);
+				}
+				if(page==7&&next%3==1){
+					OLED_ShowStr(40, 7, " ", 1);
+				}
+				if(page==7&&next%3==2){
+					OLED_ShowStr(70, 6, "          ", 1);
+					OLED_ShowStr(70, 7, "          ", 1);
+				}
+				//page8
+				if(page==8&&next%2==0){
+					OLED_ShowStr(0, 6, "     ", 1);
+					OLED_ShowStr(0, 7, "     ", 1);
+				}
+				if(page==8&&next%2==1){
+					OLED_ShowStr(70, 6, "      ", 1);
+					OLED_ShowStr(70, 7, "      ", 1);
+				}
+				Flicker_i=0;
 		}
+		else
+		{
+			oled_page_display(page);
+			Flicker_i++;
+		}
+		
+	}
 		TIM_ClearITPendingBit(BASIC_TIM , TIM_FLAG_Update);
 }
 void EXTI9_5_IRQHandler(void)                           //外部中断中断函数
@@ -541,12 +550,11 @@ void EXTI9_5_IRQHandler(void)                           //外部中断中断函数
 				Time_Adjust(&debug_time_set);
 				//向备份寄存器写入标志
 				BKP_WriteBackupRegister(RTC_BKP_DRX, RTC_BKP_DATA);
-				printf("4");
 				EXTI_ClearFlag(EXTI_Line9); 
 
 			} 
 
-
+		oled_page_display(page);
 		
 }
 

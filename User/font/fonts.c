@@ -1022,7 +1022,6 @@ int GetGBKCode_from_EXFlash( uint8_t * pBuffer, uint16_t c)
 { 
     unsigned char High8bit,Low8bit;
     unsigned int pos;
-    CatalogTypeDef dir;
 	
 		static uint8_t everRead=0;
     static s32 gbk_start_address =0;
