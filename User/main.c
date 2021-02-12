@@ -12,6 +12,8 @@ uint8_t alarm_flag=0,stopwatch_flag=0;
 uint8_t str_day[15]={0};
 uint8_t str_time[15]={0};
 uint8_t str_canderday[50]={0};
+uint8_t str_wday[50]={0};
+uint8_t str_zodiac_sign[50]={0};
 uint8_t str_time_set[15]={0};
 uint8_t str_day_set[15]={0};
 uint8_t str_alarm_time[15]={0};

@@ -2,21 +2,13 @@
 #include "./rtc/bsp_rtc.h"
 #include "OLED_I2C.h"
 #include "./dht11/bsp_dht11.h"
-
-/* 秒中断标志，进入秒中断时置1，当时间被刷新之后清0 */
-__IO uint32_t TimeDisplay = 0;
-
-/*星期，生肖用文字ASCII码*/
-char const *WEEK_STR[] = {"日", "一", "二", "三", "四", "五", "六"};
-char const *zodiac_sign[] = {"猪", "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗"};
-
-/*英文，星期，生肖用文字ASCII码*/
-char const *en_WEEK_STR[] = { "Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-char const *en_zodiac_sign[] = {"Pig", "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog"};
+#include "stdio.h"
 extern uint8_t str_day[15];
 extern uint8_t alarm_flag,stopwatch_flag;
 extern uint8_t str_time[15];
 extern uint8_t str_canderday[50];
+extern uint8_t str_wday[15];
+extern uint8_t str_zodiac_sign[15];
 extern uint8_t str_time_set[15];
 extern uint8_t str_day_set[15];
 extern uint8_t str_alarm_time[15];
@@ -27,13 +19,14 @@ extern struct rtc_time systmtime;
 extern struct rtc_time alarm_time;
 extern struct rtc_time stopwatch_time;
 extern DHT11_Data_TypeDef dht11_data;
-/*
- * 函数名：NVIC_Configuration
- * 描述  ：配置RTC秒中断的主中断优先级为1，次优先级为0
- * 输入  ：无
- * 输出  ：无
- * 调用  ：外部调用
- */
+
+/*星期，生肖用文字ASCII码*/
+char const *WEEK_STR[] = {"日", "一", "二", "三", "四", "五", "六"};
+char const *zodiac_sign[] = {"猪", "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗"};
+
+///*英文，星期，生肖用文字ASCII码*/
+//char const *en_WEEK_STR[] = { "Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+//char const *en_zodiac_sign[] = {"Pig", "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog"};
 void RTC_NVIC_Config(void)
 {
 	NVIC_InitTypeDef NVIC_InitStructure;
@@ -50,22 +43,13 @@ void RTC_NVIC_Config(void)
 }
 
 
-/*
- * 函数名：RTC_CheckAndConfig
- * 描述  ：检查并配置RTC
- * 输入  ：用于读取RTC时间的结构体指针
- * 输出  ：无
- * 调用  ：外部调用
- */
+
 void RTC_CheckAndConfig(struct rtc_time *tm)
 {
    	/*在启动时检查备份寄存器BKP_DR1，如果内容不是0xA5A5,
 	  则需重新配置时间并询问用户调整时间*/
 	if (BKP_ReadBackupRegister(RTC_BKP_DRX) != RTC_BKP_DATA)
 	{
-		printf("\r\n\r\n RTC not yet configured....");
-		printf("\r\n\r\n RTC configured....");
-
 		/* 使用tm的时间配置RTC寄存器 */
 		Time_Adjust(tm);
 		
@@ -136,14 +120,6 @@ void RTC_CheckAndConfig(struct rtc_time *tm)
 }
 
 
-
-/*
- * 函数名：RTC_Configuration
- * 描述  ：配置RTC
- * 输入  ：无
- * 输出  ：无
- * 调用  ：外部调用
- */
 void RTC_Configuration(void)
 {
 	/* 使能 PWR 和 Backup 时钟 */
@@ -233,14 +209,6 @@ void RTC_Configuration(void)
 }
 
 
-
-/*
- * 函数名：Time_Regulate_Get
- * 描述  ：保存用户使用串口设置的时间，
- *         以便后面转化成时间戳存储到RTC 计数寄存器中。
- * 输入  ：用于读取RTC时间的结构体指针
- * 注意  ：在串口调试助手输入时，输入完数字要加回车
- */
 void Time_Regulate_Get(struct rtc_time *tm)
 {
 	  uint32_t temp_num = 0;
@@ -393,36 +361,6 @@ void Time_Regulate_Get(struct rtc_time *tm)
 
 }
 
-/*
- * 函数名：Time_Show
- * 描述  ：显示当前时间值
- * 输入  ：无
- * 输出  ：无
- * 调用  ：外部调用
- */ 
-void Time_Show(struct rtc_time *tm)
-{	 
-	  /* Infinite loop */
-	  while (1)
-	  {
-	    /* 每过1s */
-	    if (TimeDisplay == 1)
-	    {
-				/* Display current time */
-	      Time_Display( RTC_GetCounter(),tm); 		  
-	      TimeDisplay = 0;
-	    }
-	  }
-}
-
-
-/*
- * 函数名：Time_Adjust
- * 描述  ：时间调节
- * 输入  ：用于读取RTC时间的结构体指针（北京时间）
- * 输出  ：无
- * 调用  ：外部调用
- */
 void Time_Adjust(struct rtc_time *tm)
 {
 	
@@ -442,13 +380,7 @@ void Time_Adjust(struct rtc_time *tm)
 	  RTC_WaitForLastTask();
 }
 
-/*
- * 函数名：Time_Display
- * 描述  ：显示当前时间值
- * 输入  ：-TimeVar RTC计数值，单位为 s
- * 输出  ：无
- * 调用  ：内部调用
- */	
+
 void Time_Display(uint32_t TimeVar,struct rtc_time *tm)
 {
 	   static uint32_t FirstDisplay = 1;
@@ -463,20 +395,8 @@ void Time_Display(uint32_t TimeVar,struct rtc_time *tm)
 	  {
 	      
 	      GetChinaCalendar((u16)tm->tm_year, (u8)tm->tm_mon, (u8)tm->tm_mday, str);	
-//					printf("\r\n 今天新历：%0.2d%0.2d,%0.2d,%0.2d", str[0], str[1], str[2], str[3]);
-//	      GetChinaCalendarStr((u16)tm->tm_year,(u8)tm->tm_mon,(u8)tm->tm_mday,str);
-//					printf("\r\n 今天农历：%s\r\n", str);
-	
-//	     if(GetJieQiStr((u16)tm->tm_year, (u8)tm->tm_mon, (u8)tm->tm_mday, str))
-//					printf("\r\n 今天农历：%s\r\n", str);
 	      FirstDisplay = 0;
 	  }	 	  	
-
-	  /* 输出时间戳，公历时间 */
-//	  printf(" UNIX时间戳 = %d 当前时间为: %d年(%s年) %d月 %d日 (星期%s)  %0.2d:%0.2d:%0.2d\r",TimeVar,
-//	                    tm->tm_year, zodiac_sign[(tm->tm_year-3)%12], tm->tm_mon, tm->tm_mday, 
-//	                    WEEK_STR[tm->tm_wday], tm->tm_hour, 
-//	                    tm->tm_min, tm->tm_sec);
 		sprintf((char*)str_day,"%0.4d-%0.2d-%0.2d", tm->tm_year, tm->tm_mon, tm->tm_mday);
 		str_day[12]=0;
 		sprintf((char*)str_time,"%0.2d:%0.2d:%0.2d",tm->tm_hour, tm->tm_min, tm->tm_sec);
@@ -497,6 +417,13 @@ void oled_page_display(uint8_t page)
 	{
 		GetChinaCalendarStr((u16)systmtime.tm_year,(u8)systmtime.tm_mon,(u8)systmtime.tm_mday,str_canderday);
 		OLED_DisString_CH(0,2,(char *)str_canderday);
+		
+		sprintf((char*)str_wday,"星期%s",WEEK_STR[systmtime.tm_wday]);								//星期
+		OLED_DisString_CH(0,4,(char *)str_wday);
+
+		sprintf((char*)str_zodiac_sign,"%s年",zodiac_sign[systmtime.tm_year%12-3]);		//调整为相应的农历年份
+		OLED_DisString_CH(80,4,(char *)str_zodiac_sign);
+		
 		OLED_DisString_CH(0,0,"湿");
 		sprintf((char*)str_tempandhumidity,":%0.2d.%0.2d",dht11_data.humi_int,dht11_data.humi_deci);
 		OLED_ShowStr(16, 0, str_tempandhumidity, 1);
@@ -565,6 +492,3 @@ void oled_page_display(uint8_t page)
 
 }
 
-
-
-/************************END OF FILE***************************************/
