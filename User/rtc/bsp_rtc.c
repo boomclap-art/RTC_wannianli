@@ -379,7 +379,21 @@ void Time_Adjust(struct rtc_time *tm)
 	  /* 等待确保上一次操作完成 */
 	  RTC_WaitForLastTask();
 }
+void Alarm_bkp_Read(void)
+{
+	uint16_t temp;
+	temp=BKP_ReadBackupRegister(BKP_DR2);
+	alarm_time.tm_hour=(temp)>>8;
+	alarm_time.tm_min=(temp&0x0f);
+	alarm_flag=BKP_ReadBackupRegister(BKP_DR3);
+}
 
+void Alarm_bkp_Write(void)
+{	
+	BKP_WriteBackupRegister(BKP_DR2,(alarm_time.tm_hour<<8)|(alarm_time.tm_min&0x0f));
+	BKP_WriteBackupRegister(BKP_DR2,(alarm_time.tm_hour<<8)|(alarm_time.tm_min&0x0f));
+	BKP_WriteBackupRegister(BKP_DR3,alarm_flag);
+}
 
 void Time_Display(uint32_t TimeVar,struct rtc_time *tm)
 {

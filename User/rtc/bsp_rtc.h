@@ -31,5 +31,7 @@ void Time_Display(uint32_t TimeVar,struct rtc_time *tm);
 static uint8_t USART_Scanf(uint32_t value);
 void RTC_CheckAndConfig(struct rtc_time *tm);
 void oled_page_display(uint8_t page);
+void Alarm_bkp_Write(void);				//将闹钟的相关信息分别写入备份寄存器BKP_DR2 BKP_DR3
+void Alarm_bkp_Read(void);				//从备份寄存器读取闹钟的相关信息
 
 #endif /* __XXX_H */

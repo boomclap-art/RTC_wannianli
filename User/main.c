@@ -53,6 +53,7 @@ int main()
 	  RTC_NVIC_Config();
 		OLED_CLS();
 	  RTC_CheckAndConfig(&systmtime);
+		Alarm_bkp_Read();
 		BASIC_TIM_Init();
 		Beep_Config();
 		DHT11_Init();

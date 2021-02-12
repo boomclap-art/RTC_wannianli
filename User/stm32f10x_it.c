@@ -529,8 +529,14 @@ void EXTI9_5_IRQHandler(void)                           //外部中断中断函数
 				Time_Adjust(&systmtime);/*配置RTC寄存器 */
 				BKP_WriteBackupRegister(RTC_BKP_DRX, RTC_BKP_DATA);/*向BKP_DR1寄存器写入标志，说明RTC已在运行*/
 			}
-			if(page==3||page==6)
+			if(page==3)
 				page_before=2;
+			if(page==6)
+			{
+				page_before=2;
+				Alarm_bkp_Write();
+			}
+			
 			if(page==2)
 				page_before =0;
 			page=page_before;
