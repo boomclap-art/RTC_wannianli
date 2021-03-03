@@ -207,8 +207,8 @@ void BASIC_TIM_IRQHandler(void)
 					OLED_ShowStr(0, 5, "          ", 1);
 				}
 				if(page==2&&next%4==3){
-					OLED_ShowStr(0 , 6,"        ", 1);
-					OLED_ShowStr(0 , 7,"        ", 1);
+					OLED_ShowStr(0 , 6,"           ", 1);
+					OLED_ShowStr(0 , 7,"           ", 1);
 				}			
 				
 				//page3

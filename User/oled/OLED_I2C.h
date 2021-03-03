@@ -46,4 +46,13 @@ void OLED_DisString_CH (uint16_t x, uint16_t y, char * pStr);				//ÏÔÊ¾ ºº×Ö×Ö·û
 void OLED_Show_Numphoto(unsigned char x, unsigned char y, unsigned char N);
 void OLED_Show_ClockPots(unsigned char x, unsigned char y);
 void OLED_Clr_ClockPots(unsigned char x, unsigned char y);
+void SetPointBuffer(int x,int y,int value);
+void ClearScreenBuffer(unsigned char val);
+void DrawLine(int x1,int y1,int x2,int y2);
+void DrawCircle ( int usX_Center, int usY_Center, int usRadius);
+void DrawRect1(int left,int top,int right,int bottom);
+void OlED_Fill_Buffer(uint8_t BMP[]);
+void UpdateScreenBuffer(void);
+void Draw_CircleClock(int hour,int min ,int sec);
+
 #endif

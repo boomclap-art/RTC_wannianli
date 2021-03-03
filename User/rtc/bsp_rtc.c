@@ -391,7 +391,7 @@ void Alarm_bkp_Read(void)
 void Alarm_bkp_Write(void)
 {	
 	BKP_WriteBackupRegister(BKP_DR2,(alarm_time.tm_hour<<8)|(alarm_time.tm_min&0x0f));
-	BKP_WriteBackupRegister(BKP_DR2,(alarm_time.tm_hour<<8)|(alarm_time.tm_min&0x0f));
+//	BKP_WriteBackupRegister(BKP_DR2,(alarm_time.tm_hour<<8)|(alarm_time.tm_min&0x0f));
 	BKP_WriteBackupRegister(BKP_DR3,alarm_flag);
 }
 
@@ -453,7 +453,7 @@ void oled_page_display(uint8_t page)
 		OLED_DisString_CH(0, 0, "校准");
 		OLED_DisString_CH(0 , 2,"闹钟");
 		OLED_DisString_CH(0 , 4,"计时器");
-		OLED_DisString_CH(0 , 6,"关于我");
+		OLED_DisString_CH(0 , 6,"图形时钟");
 	}
 	if(page==3)
 	{
@@ -497,9 +497,9 @@ void oled_page_display(uint8_t page)
 	}
 	if(page==9)
 	{
-		
-		OLED_ShowStr(35 , 3, "2019214145", 1);
-		OLED_DisString_CH(35 , 5, "杨建");
+		Draw_CircleClock(systmtime.tm_hour,systmtime.tm_min ,systmtime.tm_sec);
+//		OLED_ShowStr(35 , 3, "2019214145", 1);
+//		OLED_DisString_CH(35 , 5, "杨建");
 		
 	}
 
